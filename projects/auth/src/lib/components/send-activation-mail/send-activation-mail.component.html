@@ -1,0 +1,32 @@
+<div class="fullbox_container" [ngStyle]="{'background-color':siteInfo.authBoxRightColor}">     
+
+    <div class="text-center" style="padding: 3px 0px 8px 0;">
+      <img [src]="siteInfo.logo" width="50px">
+      <div class="auth-title">Resend Activation Email</div>
+    </div>
+
+    <form #aForm="ngForm" (ngSubmit)="activateAccount()">                        
+      <div class="input-group mb-3">
+        <!-- <div class="input-group-prepend">
+          <span class="input-group-text">Email</span>
+        </div> -->
+        <input type="email" class="form-control" placeholder="Enter Email" id="email"
+            name="email" [(ngModel)]="account.email" required autofocus>
+      </div>
+      <br/>
+    <button type="submit" [disabled]="aForm.invalid || processing"
+    class="btn btn-info btn-block" >{{processing?"Processing ...":"Submit"}}</button>
+
+</form>
+
+    <br />
+
+
+    <div class="auth-footer">      
+      Already have an Account ?  <a (click)="navigate('auth/login')">Login</a> <br/>
+        <br/>
+      Do you want to create Account ?  <a (click)="navigate('auth/register')">Register</a> <br/>
+    </div>
+  
+
+</div>

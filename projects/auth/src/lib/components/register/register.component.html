@@ -1,0 +1,81 @@
+<div class="signin_container">       
+    <div class="leftside_box text-center" [ngStyle]="{'background-color':siteInfo.authBoxLeftColor}">
+      <h4 *ngIf="siteInfo.displayOrgName"><strong>{{siteInfo.orgName}}</strong></h4>
+      <img [src]="siteInfo.logo" width="100px" class="mx-auto d-block text-center" align="center" />
+    
+    <!-- <div class="row">
+      <mdb-carousel [isControls]="false" [animation]="'slide'">
+        <mdb-carousel-item *ngFor="let gallery of siteInfo.galleries">
+          <img class="d-block w-100" src="{{gallery}}" width="100px" alt="First slide">
+        </mdb-carousel-item>
+      </mdb-carousel>
+    </div> -->
+  </div>
+  <div class="rightside_box" [ngStyle]="{'background-color':siteInfo.authBoxRightColor}">
+
+    <div class="text-center">
+      <!-- <img [src]="siteInfo.logo" width="50px"> -->
+      <div class="auth-title">Register</div>
+    </div>
+
+    <form  #aForm="ngForm" (ngSubmit)="register()" class="form-group">
+      <div class="input-group mb-3">
+          <!-- <div class="input-group-prepend mb-1">
+            <span class="input-group-text">Username</span>
+          </div> -->
+          <input type="text" class="form-control" placeholder="Enter username" id="username"
+              name="username" [(ngModel)]="user.username" required autofocus>
+        </div>
+        <div class="input-group mb-3">
+          <!-- <div class="input-group-prepend mb-2">
+            <span class="input-group-text">Name</span>
+          </div> -->
+          <input type="text" class="form-control" placeholder="Enter Name" id="name"
+              name="name" [(ngModel)]="user.name" required >
+        </div>
+        <div class="input-group mb-3">
+          <!-- <div class="input-group-prepend">
+            <span class="input-group-text">Email</span>
+          </div> -->
+          <input type="email" class="form-control" placeholder="Enter Email" id="email"
+              name="email" [(ngModel)]="user.email" required autofocus>
+        </div>
+        <div class="input-group mb-3">
+          <!-- <div class="input-group-prepend">
+            <span class="input-group-text">Password</span>
+          </div> -->
+          <input type="password" class="form-control" placeholder="Enter password" id="password"
+          [(ngModel)]="user.password" name="password" required>
+        </div>
+        <div class="form-group-inline" *ngIf="!userType">
+<!--           
+          <label class="form-check-label"> </label> -->
+          <div class="form-control-inline">
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" class="form-control-inline" id="role1"  [(ngModel)]="user.role" id="inlineCheckbox1" name="role" value="U"  [checked]="user.role" required > 
+         User &nbsp;&nbsp;&nbsp;
+            
+              <input type="radio" class="" id="role2"  [(ngModel)]="user.role" id="inlineCheckbox1" name="role" value="E" [checked]="user.role" required > 
+            Trainer
+            </div>
+  </div>
+        <!-- <br/> -->
+      
+    <button type="submit" [disabled]="aForm.invalid || processing"
+    class="btn btn-info btn-block" >{{processing?"Processing ...":"Register"}}</button>
+
+  </form>
+<!-- 
+    <br /> -->
+
+
+    <div class="auth-footer">
+      Already have an Account ? <a (click)="navigate('auth/login')" > Login</a>
+      
+    </div>
+  </div>
+
+
+
+</div>

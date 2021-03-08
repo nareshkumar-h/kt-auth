@@ -1,0 +1,49 @@
+<div class="signin_container">
+    <div class="leftside_box text-center" [ngStyle]="{'background-color':siteInfo.authBoxLeftColor}">
+        <div class="text-center">
+            <h4 *ngIf="siteInfo.displayOrgName"><strong>{{siteInfo.orgName}}</strong></h4>
+        </div>
+        <img [src]="siteInfo.logo" width="100px" class="mx-auto d-block text-center" align="center" />
+        <!-- <div class="row">
+          <mdb-carousel [isControls]="false" [animation]="'slide'">
+            <mdb-carousel-item *ngFor="let gallery of siteInfo.galleries">
+              <img class="d-block w-100" src="{{gallery}}" width="100px" alt="First slide">
+            </mdb-carousel-item>
+          </mdb-carousel>
+        </div> -->
+    </div>
+    <div class="rightside_box" [ngStyle]="{'background-color':siteInfo.authBoxRightColor}">
+
+        <div class="text-center" style="padding: 3px 0px 8px 0;">
+            <!-- <img [src]="siteInfo.logo" width="50px" *ngIf="siteInfo"> -->
+            <div class="auth-title">Mentor Sign in</div>
+        </div>
+
+        <form #aForm="ngForm" (ngSubmit)="login()">
+
+            <div class="input-group mb-3">
+
+                <input type="text" class="form-control" placeholder="Enter email" id="email" name="email"
+                    autocomplete="off" [(ngModel)]="user.email" required autofocus>
+            </div>
+            <button type="submit" [disabled]="aForm.invalid || processing"
+                class="btn btn-info btn-block">{{processing?"Processing ...":"Sign In"}}</button>
+        </form>
+        <br />
+
+
+        <!-- <div class="auth-footer">
+          Do you want to create Account ? <a (click)="navigate('auth/register')"> Register</a> &nbsp;<br/>        
+          Forgot Password ? <a (click)="navigate('auth/forgotPassword')">Forgot Password</a> &nbsp;
+        </div> -->
+    </div>
+
+
+</div>
+
+<script>
+    let navigator = navigator.userAgent;
+    if (navigator != null && navigator.indexOf("Mobile") != -1) {
+        document.querySelector(".leftside_box").style.display = "none";
+    }
+</script>

@@ -1,0 +1,72 @@
+<div class="signin_container">
+  <div class="leftside_box text-center" [ngStyle]="{'background-color':siteInfo.authBoxLeftColor}">
+    <div class="text-center">
+      <h4 *ngIf="siteInfo.displayOrgName"><strong>{{siteInfo.orgName}}</strong></h4>
+    </div>
+    <img [src]="siteInfo.logo" width="100px" class="mx-auto d-block text-center" align="center" />
+    <!-- <div class="row">
+        <mdb-carousel [isControls]="false" [animation]="'slide'">
+          <mdb-carousel-item *ngFor="let gallery of siteInfo.galleries">
+            <img class="d-block w-100" src="{{gallery}}" width="100px" alt="First slide">
+          </mdb-carousel-item>
+        </mdb-carousel>
+      </div> -->
+  </div>
+  <div class="rightside_box" [ngStyle]="{'background-color':siteInfo.authBoxRightColor}">
+
+    <div class="text-center" style="padding: 3px 0px 8px 0;">
+      <!-- <img [src]="siteInfo.logo" width="50px" *ngIf="siteInfo"> -->
+      <div class="auth-title">Sign in</div>
+    </div>
+
+    <form #aForm="ngForm" (ngSubmit)="login()">
+
+      <div class="input-group mb-3">
+        <!-- <div class="input-group-prepend">
+            <span class="input-group-text">Username</span>
+          </div> -->
+        <input type="text" class="form-control" placeholder="Enter username or email" id="username" name="username"
+          autocomplete="off" [(ngModel)]="user.email" required autofocus>
+      </div>
+      <div class="input-group mb-3">
+        <!-- <div class="input-group-prepend">
+            <span class="input-group-text">Password</span>
+          </div> -->
+        <input type="password" class="form-control" placeholder="Enter password" id="password"
+          [(ngModel)]="user.password" name="password" required autocomplete="off">
+      </div>
+      <div class="form-group-inline" *ngIf="!userType">
+
+        <div class="form-control-inline mr-auto">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" class="form-control-inline mr-auto" id="role1" [(ngModel)]="user.role"
+            id="inlineCheckbox1" name="role" value="U" [checked]="user.role" required>
+          User &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          <input type="radio" class="" id="role2" [(ngModel)]="user.role" id="inlineCheckbox1" name="role" value="E"
+            [checked]="user.role" required>
+          Trainer
+        </div>
+      </div>
+      <br />
+      <button type="submit" [disabled]="aForm.invalid || processing"
+        class="btn btn-info btn-block">{{processing?"Processing ...":"Sign In"}}</button>
+    </form>
+    <br />
+
+    <!--
+    <div class="auth-footer">
+      Do you want to create Account ? <a (click)="navigate('auth/register')"> Register</a> &nbsp;<br />
+      Forgot Password ? <a (click)="navigate('auth/forgotPassword')">Forgot Password</a> &nbsp;
+    </div> -->
+  </div>
+
+
+</div>
+
+<script>
+  let navigator = navigator.userAgent;
+  if (navigator != null && navigator.indexOf("Mobile") != -1) {
+    document.querySelector(".leftside_box").style.display = "none";
+  }
+</script>

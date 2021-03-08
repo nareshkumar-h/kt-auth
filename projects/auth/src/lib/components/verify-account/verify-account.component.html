@@ -1,0 +1,34 @@
+<div class="fullbox_container" [ngStyle]="{'background-color':siteInfo.authBoxRightColor}">     
+
+    <div class="text-center" style="padding: 3px 0px 8px 0;">
+      <img [src]="siteInfo.logo" width="50px">
+      <div class="auth-title">Activate Account</div>
+    </div>
+
+    <div *ngIf="!infoMessage && !errorMessage">        
+        <button type="submit" [disabled]="processing"
+          class="btn btn-info btn-block" >Processing ...</button>
+    </div>
+
+    <div *ngIf="infoMessage">
+        <span align="center">  <font color="green">{{infoMessage}}</font></span>
+    </div>
+    <div *ngIf="errorMessage">
+        <span align="center"><font color="red">{{errorMessage}}</font></span>
+        <div *ngIf="errorMessage=='Invalid Key'">
+            <a class="btn btn-info" routerLink="../../send-activation-mail">Resend Verification Mail</a>
+        </div>
+    </div>
+    
+
+    <br />
+
+
+    <div class="auth-footer">      
+      Already have an Account ?  <a (click)="navigate('auth/login')">Login</a> <br/>
+        <br/>
+      Do you want to create Account ?  <a (click)="navigate('auth/register')">Register</a> <br/>
+    </div>
+  
+
+</div>
