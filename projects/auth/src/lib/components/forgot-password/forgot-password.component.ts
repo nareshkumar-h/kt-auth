@@ -30,6 +30,7 @@ export class ForgotPasswordComponent implements OnInit {
   submit() {
     this.processing = true;
     this.account['role'] = this.userType;
+    this.account['application'] = this.config.APPLICATION;
     this.authService.forgotPassword(this.account).subscribe(
       (res) => {
         console.log(res);

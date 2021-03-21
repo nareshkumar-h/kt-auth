@@ -8,6 +8,7 @@ export class Config {
   REDIRECT_URI?: string;
   ALLOW_SIGNUP: boolean = false;
   ENVIRONMENT: string;
+  APPLICATION: string;
 }
 
 export const AUTH_CONFIG = new InjectionToken<Config>('AUTH_CONFIG');

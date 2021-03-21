@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
     if (this.userType) {
       this.user['role'] = this.userType;
     }
+    this.user['application'] = this.config.APPLICATION;
 
     this.authService.register(this.user).subscribe(
       (res) => {

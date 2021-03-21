@@ -19,8 +19,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    @Inject(AUTH_CONFIG) private config: Config,
-    private securityService: SecurityService
+    @Inject(AUTH_CONFIG) private config: Config
   ) {
     this.apiUrl = config.API_ENDPOINT;
     this.role = config.USER_TYPE;
@@ -66,12 +65,7 @@ export class AuthService {
 
   register(user) {
     user['role'] = this.role;
-    let url = '';
-    if (user.role == 'E') {
-      url = this.apiUrl + 'v1/auth/empregister';
-    } else {
-      url = this.apiUrl + 'v1/auth/register';
-    }
+    let url = this.apiUrl + 'v1/auth/register';
     return this.http.post(url, user);
   }
 

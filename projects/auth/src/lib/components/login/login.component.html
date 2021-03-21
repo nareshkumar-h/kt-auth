@@ -19,21 +19,21 @@
       <div class="auth-title">Sign in</div>
     </div>
 
-    <form #aForm="ngForm" (ngSubmit)="login()">
+    <form #aForm="ngForm" (ngSubmit)="login()" autocomplete="off">
 
       <div class="input-group mb-3">
         <!-- <div class="input-group-prepend">
             <span class="input-group-text">Username</span>
           </div> -->
-        <input type="text" class="form-control" placeholder="Enter username or email" id="username" name="username"
-          autocomplete="off" [(ngModel)]="user.email" required autofocus>
+        <input type="text" class="form-control" placeholder="Enter username or email" id="username" name="newUsername"
+          autocomplete="off" [(ngModel)]="user.email" required autofocus autocomplete="newUsername">
       </div>
       <div class="input-group mb-3">
         <!-- <div class="input-group-prepend">
             <span class="input-group-text">Password</span>
           </div> -->
         <input type="password" class="form-control" placeholder="Enter password" id="password"
-          [(ngModel)]="user.password" name="password" required autocomplete="off">
+          [(ngModel)]="user.password" name="newPassword" required autocomplete="newPassword">
       </div>
       <div class="form-group-inline" *ngIf="!userType">
 

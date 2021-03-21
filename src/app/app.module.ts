@@ -31,6 +31,7 @@ import { AuthModule } from '@auth0/auth0-angular';
       REDIRECT_URI: environment.REDIRECT_URI,
       ALLOW_SIGNUP: false,
       ENVIRONMENT: environment.ENV,
+      APPLICATION: 'KnowledgeTracker',
     }),
     FormsModule,
     ReactiveFormsModule,
