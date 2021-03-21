@@ -7,7 +7,7 @@ export const environment = {
   API_URL: 'http://localhost:8080/api/',
   ORG_ID: 'spinsoft',
   ENV: 'DEV',
-  REDIRECT_URI: 'http://localhost:4200/auth/authorize',
+  REDIRECT_URI: 'http://localhost:4200/',
 };
 
 /*

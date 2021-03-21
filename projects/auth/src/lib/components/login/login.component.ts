@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    @Inject(AUTH_CONFIG) private config: Config,
+    @Inject(AUTH_CONFIG) public config: Config,
     private secureService: SecurityService
   ) {
     this.userType = this.config.USER_TYPE;
@@ -125,11 +125,13 @@ export class LoginComponent implements OnInit {
             this.redirectToHomepage(responseUser);
           },
           (err) => {
-            console.error(err);
+            console.log(err.response.data);
+            let error = err.response.data;
+
             this.processing = false;
             let message = 'Invalid Login Credentials';
-            if (err?.error?.errorMessage) {
-              message = err?.error?.errorMessage;
+            if (error?.errorMessage) {
+              message = error?.errorMessage;
             }
             this.toastr.error(message);
           }

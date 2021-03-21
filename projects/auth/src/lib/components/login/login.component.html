@@ -54,11 +54,15 @@
     </form>
     <br />
 
-    <!--
+
     <div class="auth-footer">
-      Do you want to create Account ? <a (click)="navigate('auth/register')"> Register</a> &nbsp;<br />
-      Forgot Password ? <a (click)="navigate('auth/forgotPassword')">Forgot Password</a> &nbsp;
-    </div> -->
+      <span *ngIf="config.ALLOW_SIGNUP">
+        Do you want to create Account ?
+        <a (click)="navigate('auth/register')"> <strong>Register</strong> </a> &nbsp;<br />
+      </span>
+      Forgot Password ? <a (click)="navigate('auth/forgotPassword')">
+        <strong>Forgot Password </strong></a> &nbsp;
+    </div>
   </div>
 
 

@@ -10,10 +10,10 @@
     "e2e": "ng e2e",
     "build:schematics": "tsc -p projects/theme/tsconfig.schematics.json",
     "copy:schematics": "cpr projects/theme/schematics dist/theme/schematics --deleteFirst",
-    "npm-pack": "ng build theme --prod && npm run build:schematics && npm run copy:schematics && cd dist/theme && npm pack",
+    "npm-pack": "ng build auth --prod && npm run build:schematics && npm run copy:schematics && cd dist/theme && npm pack",
     "pack": "ng build auth --prod && cd dist/auth && npm pack"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "~10.2.0",
     "@angular/cdk": "^11.2.3",
@@ -29,6 +29,7 @@
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@ks-sdk-client/rest": "git+https://github.com/knowledgetracker/ks-sdk-client.git",
     "@metismenu/angular": "0.0.2",
+    "@nareshkumarh/kt-theme": "^1.0.6",
     "angular-bootstrap-md": "^10.1.1",
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
@@ -36,7 +37,6 @@
     "ngx-device-detector": "^2.0.6",
     "ngx-toastr": "^13.2.0",
     "rxjs": "~6.6.0",
-    "theme": "git+https://github.com/nareshkumar-h/ngx-kt-theme.git",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

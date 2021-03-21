@@ -12,7 +12,6 @@ export class AuthorizeComponent implements OnInit {
   constructor(private auth: AuthService, private route: ActivatedRoute) {
     this.route.queryParamMap.subscribe((params) => {
       this.code = params['code'];
-      alert(this.code);
     });
   }
 
