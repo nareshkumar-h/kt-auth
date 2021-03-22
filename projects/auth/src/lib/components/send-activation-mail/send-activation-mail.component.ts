@@ -29,6 +29,7 @@ export class SendActivationMailComponent implements OnInit {
   processing = false;
   activateAccount() {
     console.log(this.account);
+    this.account['application'] = this.config.APPLICATION;
     this.processing = true;
     this.authService.resendActivateAccount(this.account).subscribe(
       (res) => {
