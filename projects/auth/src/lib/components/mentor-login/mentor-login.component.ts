@@ -104,7 +104,6 @@ export class MentorLoginComponent implements OnInit {
             this.processing = false;
             this.toastr.success('Login Success', '', { timeOut: 1000 });
             let responseUser = res;
-            responseUser.organization = this.config.ORG_ID;
             this.authService.storeUser(responseUser);
 
             this.redirectToHomepage(responseUser);

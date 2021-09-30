@@ -111,15 +111,13 @@ export class LoginComponent implements OnInit {
     }
     try {
       this.authService
-        .getAuthClient()
         .login(this.user)
-        .then(
-          (res) => {
+        .subscribe(
+          (res: any) => {
             console.log('Response', res);
             this.processing = false;
             this.toastr.success('Login Success', '', { timeOut: 1000 });
             let responseUser = res;
-            responseUser.organization = this.config.ORG_ID;
             this.authService.storeUser(responseUser);
 
             this.redirectToHomepage(responseUser);

@@ -2,15 +2,19 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Config, AUTH_CONFIG } from './config';
-import { SecurityService } from './security/security.service';
 import { AuthClient } from '@ks-sdk-client/rest';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
+  private loginSubject: any = new BehaviorSubject<any>(this.getUser());
+  public currentUser: Observable<any>;
+
   private apiUrl: string;
-  private orgId: string;
   private role: string;
   private siteInfo: any;
 
@@ -19,16 +23,16 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     @Inject(AUTH_CONFIG) private config: Config
   ) {
+    this.currentUser = this.loginSubject.asObservable();
     this.apiUrl = config.API_ENDPOINT;
     this.role = config.USER_TYPE;
-    this.orgId = config.ORG_ID;
   }
 
   getHeaders() {
     let headers = new HttpHeaders();
-    //headers = headers.set('org', this.orgId);
     return headers;
   }
 
@@ -41,11 +45,17 @@ export class AuthService {
   }
 
   headers = {};
-  org: string;
+
+  logout() {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.loginSubject.next(null);
+    this.router.navigateByUrl("auth/login");
+
+  }
+
 
   getAuthClient() {
-    this.headers['org'] = this.orgId;
-    //this.headers['Authorization'] = `Bearer ${this.authService.getToken()}`;
     return new AuthClient({
       headers: this.headers,
       environment: this.config.API_ENDPOINT,
@@ -152,8 +162,8 @@ export class AuthService {
   }
 
   getUser(): any {
-    let user = JSON.parse(localStorage.getItem('LOGGED_IN_USER'));
-    return user;
+    let userStr = localStorage.getItem("LOGGED_IN_USER");
+    return userStr != null ? JSON.parse(userStr) : null;
   }
 
   getSelectedUser() {
@@ -195,6 +205,7 @@ export class AuthService {
     localStorage.setItem('LOGGED_IN_USER', JSON.stringify(user));
     localStorage.setItem('TOKEN', user.token);
     localStorage.setItem('SELECTED_USER', user['username']);
+    this.loginSubject.next(user);
     // let username = res['login'];
     // let user = {
     //   id: res['id'],
